@@ -5,10 +5,13 @@ import java.util.concurrent.TimeoutException;
 public class Principal {
 
 	public static void main(String[] args) throws ExecutionException, InterruptedException, TimeoutException, ClassCastException {
+		
 		SquareCalculator squareCalculator = new SquareCalculator();
-
-		Future<Integer> future1 = squareCalculator.calculate(10);
-		Future<Double> future2 = squareCalculator.plus(100.0,200.0);
+		
+		
+		
+		Future<Integer> future2 = squareCalculator.calculate(10);
+		Future<String[]> future1 = squareCalculator.cadena();
 
 		while (!(future1.isDone() && future2.isDone())) {
 		    System.out.println(
@@ -21,9 +24,9 @@ public class Principal {
 		    Thread.sleep(300);
 		}
 
-		Integer result1 = future1.get();
-		Double result2 = future2.get();
+		Integer result1 = future2.get();
+		String[] result2 = future1.get();
 
-		System.out.println(result1 + " and " + result2);
+		System.out.println(result1);
 	}
 }

@@ -3,8 +3,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class SquareCalculator{    
-    
-    private ExecutorService executor = Executors.newFixedThreadPool(2);
+	String[] lista= new String[] {"hola","que","tal","estas","estas","estas","estas","estas","estas","estas","estas","estas","estas","estas","estas","estas","estas"};
+
+    private ExecutorService executor = Executors.newSingleThreadExecutor();
+   
+    public String[] recorrerString(String[] lista) {
+    	for(String cadena:lista) {
+    	     System.out.println(cadena);
+    	}
+		return lista;
+    }
     
     public Future<Integer> calculate(Integer input) {        
         return executor.submit(() -> {
@@ -19,4 +27,12 @@ public class SquareCalculator{
     		return numberOne + numberTwo;
     	});
     }
+    
+    public Future<String[]> cadena(){
+    	return executor.submit(() -> {
+    		Thread.sleep(1000);
+    		return recorrerString(lista);
+    	});
+    }   
+ 
 }
